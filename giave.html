@@ -1,0 +1,81 @@
+<div id="maincontent"><!--phần bao content-->
+ <div id ="content">
+ <div class="dinhdang"><!--định dạng chung-->
+ <h1>Giá vé</h1>
+ <div id="noidung"><!--định dạng nd-->
+ <form align="center" action= "<?php echo $_SERVER['PHP_SELF']; ?>" method ="POST">
+<table style="width:100%" align="center" border="1">
+            <tr>
+				<td align ="center" colspan="2" size = "300px" bgcolor ="80B4D0"><font color="#003399"><b>Giá vé cá nhân</b></font></td>
+			</tr>
+			<tr>
+				<td align ="center"><b>Đối tượng</b></td>
+				<td align ="center"><b>Giá vé</b></td>
+			</tr>
+			<tr>
+				<?php
+				$conn=mysqli_connect("localhost","root","","dulieu");
+				$conn->query("SET NAMES 'utf8'");
+				if (!$conn)
+				{
+					die("Kết nối lỗi: " . mysqli_connect_error());
+				}
+				$sql="select * from giavecn";
+				$kq=mysqli_query($conn,$sql);
+				if (mysqli_num_rows($kq) > 0)
+				{
+					while($row = mysqli_fetch_assoc($kq))
+					{
+						echo "<tr>";
+						echo "<td>";
+							echo $row['doituong'];
+						echo "</td>";
+						echo "<td>";
+							echo $row['giave'];
+						echo "</td>";
+						echo "</tr>";
+					
+					}
+				}
+				
+				
+			?>
+			</tr>
+			<tr>
+				<td colspan="2" align ="center" size = "300px" bgcolor ="80B4D0"><font color="#003399"><b>Giá vé tháng</b></td>
+			</tr>
+			<tr>
+				<?php
+				
+				$sqlt="select * from giavethang";
+				$kq=mysqli_query($conn,$sqlt);
+				if (mysqli_num_rows($kq) > 0)
+				{
+					while($row = mysqli_fetch_assoc($kq))
+					{
+						echo "<tr>";
+						echo "<td>";
+							echo $row['doituong'];
+						echo "</td>";
+						echo "<td>";
+							echo $row['giave'];
+						echo "</td>";
+						echo "</tr>";
+					
+					}
+				}
+				
+				
+			?>
+			</tr>
+			
+</table>
+</form>
+<tr><font color="#CC0000"><b><u><i>Chú thích:</i></u></b></font></tr><br>
+			<tr> <font color="#CC0000">(*)</font> Trẻ em dưới 8 tuổi. <br> <font color="#CC0000">(**)</font> Cần cung cấp thẻ học sinh, sinh viên. <br> <font color="#CC0000">Ngoài ra</font>, khi dừng các trạm ở giữa, kiểm soát viên tùy đoạn đường xa hay gần mà thu giá vé từ 8.000 - 10.000 đồng.
+			</tr>
+			
+ </div>
+  </div>
+  </div>
+ </div><!--end phần bao content-->
